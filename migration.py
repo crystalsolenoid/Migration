@@ -12,6 +12,12 @@ BIRD = "⋎"
 
 DELAY = 0.1
 
+def choose_width():
+    try:
+        return os.get_terminal_size()[0]
+    except:
+        return 80
+
 def clamp(low, val, high):
     return sorted((low, val, high))[1]
 
@@ -31,14 +37,14 @@ def new_flock(width):
     return [position, length, max_length]
 
 def main():
-    width = os.get_terminal_size()[0]
+    width = choose_width()
 
     # flock data structure:
     # [position, current length, max length]
     flocks = [[width // 2, 0, 7]]
 
     while True:
-        width = os.get_terminal_size()[0]
+        width = choose_width()
         line = [" "] * width
         for flock in flocks:
             if flock[1] <= flock[2]:
