@@ -45,6 +45,10 @@ def main():
                 nth_birds(flock[1], flock[0], line)
                 flock[1] += 1
         print("".join(line))
+
+        # cull finished flocks
+        flocks = [f for f in flocks if f[1] <= f[2]]
+
         if rnd.randrange(6) == 0:
             flocks.append(new_flock(width))
         time.sleep(DELAY)
